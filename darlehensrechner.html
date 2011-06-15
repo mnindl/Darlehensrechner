@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='de' xml:lang='de' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <meta name="description" content="darlehensrechner" />
+    <meta name="keywords" content="Umzug" />
+    <meta name="author" content="" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="css/reset_min.css" type="text/css" rel="stylesheet"/>
+    <link href="css/jquery-ui-1.8.11.custom.min.css" type="text/css" rel="stylesheet"/>
+    <link href="css/darlehensrechner.min.css" type="text/css" rel="stylesheet"/>
+    <title>Darlehensrechner</title>
+  </head>
+  <body class="loan_compute">
+    <div class="ajax_loader"><i>&nbsp;</i></div>
+    <div class="loan_compute_box">
+      <p class="slider_label">Monatsrate</p>
+      <div class="slider_box monthly_rate_slider">
+        <span class="range_value start">300 &#128;</span>
+        <div class="slider slider_monthly">&nbsp;</div>
+        <span class="range_value end">2.500 &#128;</span>
+      </div>
+      <p class="slider_label">Eigenkapital</p>
+      <div class="slider_box own_capital_slider">
+        <span class="range_value start">1.000 &#128;</span>
+        <div class="slider slider_capital">&nbsp;</div>
+        <span class="range_value end">100.000 &#128;</span>
+      </div>
+      <p class="buy_price">M&ouml;glicher Kaufpreis</p>
+      <div class="loan_compute_result">
+        <div class="sum">
+          <p>xxx &#128;</p>
+        </div>
+        <div class="get_offer">
+          <a href="http://www.immobilienscout24.de/leadEngineFinance.go" target="_blank">
+            <span>&nbsp;</span>
+            Finanzierungsangebot
+          </a>
+        </div>
+        <p class="remain_dept">Restschuld nach <i class="years">xxx</i> Jahren: <i id="remain_dept"></i></p>
+        <span class="other_scout_user">So haben andere ImmobilienScout24 Nutzer finanziert.</span>
+        <small>
+          Grundlagen f&uuml;r die Berechnung: <i class="years">xxx</i> Jahre Sollzinsbindung,
+          <i id="clearance">xxx</i>% Tilgung, <i id="ann_percent_rate">xxx</i>% effektiver Jahreszins,
+          <i id="debit_interest">xxx</i>% Sollzins
+        </small>
+      </div>
+      <p class="slider_label taxes_label">Einstellungen&nbsp;&nbsp;&nbsp;&nbsp; der Zinsen</p>
+      <div class="extra_conf">
+        <div class="debit_interest">
+          <label>Sollzinsbindung in Jahren</label>
+          <input type="radio" name="debit_interest_binding" value="5" checked="checked"/><span>5</span>
+          <input type="radio" name="debit_interest_binding" value="10"/><span>10</span>
+          <input type="radio" name="debit_interest_binding" value="15"/><span>15</span>
+          <input type="radio" name="debit_interest_binding" value="20"/><span>20</span>
+        </div>
+        <div class="market_values">
+          <label for="use_market_values">Aktuelle Marktzinsen verwenden</label>
+          <input type="checkbox" name="use_market_values" id="use_market_values" checked="checked"/>
+          <img src="images/info.jpg" alt="info" class="info"/>
+          <div class="demotip">
+            <div class="tt_top"></div>
+            <div class="tt_main">
+              Die Marktzinsen werden anhand aktueller Finanzierungsangebote auf
+              <a href="http://www.meine-baufinanzierung.de" target="_blank">www.meine-baufinanzierung.de</a>
+               ermittelt und geben einen guten Anhaltspunkt f&#252;r tats&#228;chlich erzielbare Konditionen.
+            </div>
+            <div class="tt_bottom"></div>
+          </div>
+        </div>
+        <div class="interest_clearance">
+          <label for="interest_rate">Effektivzins: </label>
+          <input type="text" id="interest_rate" maxlength="3"/><span>%</span>
+          <img src="images/info.jpg" alt="info" class="info"/>
+          <div class="demotip">
+            <div class="tt_top"></div>
+            <div class="tt_main">
+              Mit dem Effektivzins ist der effektive Jahreszins gemeint. Dieser stellt die als j&#228;hrlicher Prozentsatz
+              anzugebenden Gesamtkosten eines Kredits dar.
+              &#167; 6, 6a Preisangabenverordnung (PAngV) verpflichten die Kreditgeber zur Angabe eines Effektivzinses
+              und schreiben die Berechnungsmethode sowie die in die Berechnung einzubeziehenden Kostenbestandteile vor.
+              Einzubeziehen sind danach insbesondere Agio, Disagio, Nominalzins, Bearbeitungsgeb&#252;hren, Kreditvermittlungskosten
+              und Pr&#228;mien für Restschuldversicherungen.
+            </div>
+            <div class="tt_bottom"></div>
+          </div>
+        </div>
+        <div class="interest_clearance">
+          <label class="label_clearance_val" for="clearance_val">Tilgung: </label>
+          <input type="text" id="clearance_val" value="1" maxlength="3"/><span>%</span>
+          <img src="images/info.jpg" alt="info" class="info" />
+          <div class="demotip">
+            <div class="tt_top"></div>
+            <div class="tt_main">
+              Die Tilgung ist der Betrag, mit dem ein Kreditnehmer seine Schulden ratenweise zur&#252;ckbezahlt.
+              &#220;berwiegend wird im Immobilienbereich noch mit j&#228;hrlichen Raten zwischen 1 und 2&#37; des Anfangskredites zur&#252;ckgezahlt.
+            </div>
+            <div class="tt_bottom"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="finance_other_scout_users">
+      <div class="left">
+        <button><img src="images/back_arrow.png" alt="back" class="back_arrow" />Zur&#252;ck</button>
+      </div>
+      <div class="right">
+        <h1>Aktuelle Finanzierungsprojekte von ImmobilienScout24-Nutzern</h1>
+      </div>
+      <div class="finanz_datas">
+        <div class="info_layer">
+          F&#252;r den Kaufpreis <i class="sum"></i> und das Eigenkapital <i class="own_capital"></i> konnten auf 
+          <a href="http://www.meine-baufinanzierung.de" target="_blank">www.meine-baufinanzierung.de</a> 
+          keine aktuellen Finanzierungsprojekte gefunden werden.
+        </div>
+        <h4>G&#252;nstigster Anbieter</h4>
+        <img src="images/info.jpg" alt="info" class="info2"/>
+        <div class="demotip">
+          <div class="tt_top"></div>
+          <div class="tt_main">
+            Dieser Finanzierungsanbieter hat auf dem Baufinanzierungs-Vergleichsportal
+            <a href="http://www.meine-baufinanzierung.de" target="_blank">www.meine-baufinanzierung.de</a> f&#252;r das Projekt
+            die g&#252;nstigsten Konditionen angeboten.
+          </div>
+          <div class="tt_bottom"></div>
+        </div>        
+        <h4>Projektbeschreibung</h4>
+        <ul class="scout_datas_list">
+          <li>this content will be replaced</li>
+        </ul>
+      </div>
+      <ul class="scout_datas_list_hidden" style="display:none;"><li></li></ul>
+      <div id="pagination"></div>
+    </div>
+    <div class="announcement_item">
+      <div class="left">
+        <button><img src="images/back_arrow.png" alt="back" class="back_arrow_item" />Zur&#252;ck</button>
+      </div>
+      <div class="right">
+        <h1>
+          <i class="finanzierungsobjekt"></i>, 
+          <i class="immobilienart"></i> in 
+          <i class="ort"></i>, 
+          <i class="immobiliennutzung"></i>
+        </h1>
+      </div>
+      <div class="announcement_item_part1">
+        <div class="info_label_layer">
+          <p class="info_label">Finanzierungsbedarf</p>
+          <img src="images/info.jpg" alt="info" class="info2"/>
+          <div class="demotip">
+            <div class="tt_top"></div>
+            <div class="tt_main">
+              Die angebotenen Konditionen beziehen sich auf diesen Finanzierungsbedarf.
+            </div>
+            <div class="tt_bottom"></div>
+          </div>
+        </div>
+        <div class="labels">
+          <p>Gesamtkosten:</p>
+          <p>Darlehensh&#246;he:</p>
+          <p>Eigenkapital:</p>
+          <p>Sollzinsbindung:</p>
+          <p>Tilgung:</p>
+        </div>
+        <div class="values">
+          <p class="gesamtkosten">&nbsp;</p>
+          <p class="darlehenshoehe">&nbsp;</p>
+          <p class="eigenkapital">&nbsp;</p>
+          <p class="zinsbindung">&nbsp;</p>
+          <p class="tilgungsrate">&nbsp;</p>
+        </div>
+      </div>
+      <div class="announcement_item_part2">
+        <div class="info_label_layer">
+          <p class="info_label">G&#252;nstigste Konditionen</p>
+          <img src="images/info.jpg" alt="info" class="info2"/>
+          <div class="demotip">
+            <div class="tt_top"></div>
+            <div class="tt_main">
+              F&#252;r dieses Finanzierungsprojekt k&#246;nnen mehrere Angebote auf
+              <a href="http://www.meine-baufinanzierung.de" target="_blank">www.meine-baufinanzierung.de</a> erstellt worden sein.
+              Hier werden die g&#252;nstigsten Konditionen und deren Anbieter dargestellt. Das bedeutet aber nicht, dass sich der 
+              Nutzer auch f&#252;r dieses Angebot entschieden hat.
+            </div>
+            <div class="tt_bottom"></div>
+          </div>
+        </div>
+        <div class="labels">
+          <p>Monatliche Rate:</p>
+          <p>Effektiver Jahreszins:</p>
+          <p>Sollzins:</p>
+        </div>
+        <div class="values">
+          <p class="rate">&nbsp;</p>
+          <p class="effektivzins">&nbsp;</p>
+          <p class="nominalzins">&nbsp;</p>
+        </div>
+      </div>
+      <div class="announcement_item_part3">
+        <p class="info_label">Anbieter der Konditionen:</p>
+        <img class="logourl" alt="logo" src="" />
+        <div class="values">
+          <p id="firmenname" class="consultant">&nbsp;</p>
+          <p class="consultant"><i class="salutation"></i> <i class="firstname"></i> <i class="lastname"></i></p>
+          <p id="homepage" class="consultant"><a href="#" target="_blank">&nbsp;</a></p>
+          <p id="telefonnummer" class="consultant">&nbsp;</p>
+        </div>
+      </div> 
+    </div>
+    <script type="text/javascript" src="js/jquery-1.5.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.8.11.custom.min.js"></script>
+    <script type="text/javascript" src="js/finanzierungsvorhaben.min.js"></script>
+    <script type="text/javascript" src="js/jquery.tools.min.js"></script>
+    <script type="text/javascript" src="js/jquery.pagination.min.js"></script>
+    <script type="text/javascript" src="js/darlehensrechner.min.js"></script>
+    
+  </body>
+</html>
